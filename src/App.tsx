@@ -1,9 +1,15 @@
+import styled from "@emotion/styled"
+import Home from "./pages/Home/Home"
+
+
 const App = () => {
+
 
 
   return (
     <>
-      App
+      
+      <Home />
     </>
   )
 }
