@@ -2,6 +2,12 @@
 
 Local host: http://localhost:5173/
 
+## Para subir o host
+```bash
+  npm run dev
+```
+
+Esse projeto tem o objetivo de trazer um portifolio pessoal para apresentar projetos desenvolvidos, skils e etc.
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
