@@ -1,0 +1,248 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+html.light {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+html.dark {
+  --background: #0a0a0a;
+  --foreground: #ededed;
+}
+
+@media (prefers-color-scheme: dark) {
+  html:not(.light):not(.dark) {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-geist-sans), Arial, Helvetica, sans-serif;
+}
+
+.background-texture {
+  isolation: isolate;
+}
+
+.background-texture::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background:
+    radial-gradient(72rem 40rem at -4% -14%, rgba(203, 213, 225, 0.32), transparent 58%),
+    radial-gradient(52rem 32rem at 100% 8%, rgba(212, 212, 216, 0.26), transparent 62%),
+    radial-gradient(44rem 30rem at 50% 114%, rgba(228, 228, 231, 0.22), transparent 72%),
+    linear-gradient(130deg, rgba(255, 255, 255, 0.84) 10%, rgba(250, 250, 250, 0.62) 38%, rgba(244, 244, 245, 0.32) 100%);
+  opacity: 0.98;
+}
+
+.background-texture::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(63, 63, 70, 0.08) 1px, transparent 0),
+    radial-gradient(120rem 66rem at 50% 128%, rgba(63, 63, 70, 0.1), transparent 60%),
+    linear-gradient(to bottom, rgba(113, 113, 122, 0.06), transparent 24%, transparent 74%, rgba(113, 113, 122, 0.08));
+  background-size: 3px 3px, cover, cover;
+  mix-blend-mode: multiply;
+  opacity: 0.14;
+}
+
+html.dark .background-texture::before {
+  background:
+    radial-gradient(80rem 44rem at -8% -12%, rgba(255, 255, 255, 0.12), transparent 56%),
+    radial-gradient(52rem 34rem at 102% 10%, rgba(148, 163, 184, 0.16), transparent 60%),
+    radial-gradient(44rem 30rem at 50% 116%, rgba(99, 102, 241, 0.12), transparent 74%),
+    linear-gradient(130deg, rgba(9, 9, 11, 0.82) 10%, rgba(24, 24, 27, 0.58) 44%, rgba(39, 39, 42, 0.35) 100%);
+  opacity: 0.92;
+}
+
+html.dark .background-texture::after {
+  background-image:
+    radial-gradient(circle at 1px 1px, rgba(244, 244, 245, 0.15) 1px, transparent 0),
+    radial-gradient(120rem 66rem at 50% 128%, rgba(0, 0, 0, 0.42), transparent 56%),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.44), transparent 22%, transparent 72%, rgba(0, 0, 0, 0.48));
+  background-size: 3px 3px, cover, cover;
+  mix-blend-mode: screen;
+  opacity: 0.2;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes revealLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes revealRight {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes riseBlur {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes chipIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes photoMount {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.97);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+.animate-fade-down {
+  opacity: 0;
+  animation: fadeDown 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-reveal-left {
+  opacity: 0;
+  animation: revealLeft 850ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-reveal-right {
+  opacity: 0;
+  animation: revealRight 850ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-rise-blur {
+  opacity: 0;
+  animation: riseBlur 900ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-card-in {
+  opacity: 0;
+  animation: cardIn 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-chip-in {
+  opacity: 0;
+  animation: chipIn 500ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-photo-mount {
+  opacity: 0;
+  animation: photoMount 900ms cubic-bezier(0.22, 1, 0.36, 1) 120ms forwards;
+}
+
+.delay-1 {
+  animation-delay: 120ms;
+}
+
+.delay-2 {
+  animation-delay: 240ms;
+}
+
+.delay-3 {
+  animation-delay: 360ms;
+}
+
+.delay-4 {
+  animation-delay: 480ms;
+}
+
+.delay-5 {
+  animation-delay: 600ms;
+}
