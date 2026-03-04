@@ -1,29 +1,5 @@
 import Image from "next/image";
-
-const profile = {
-  name: "João Vitor",
-  role: "Desenvolvedor Full Stack",
-  tagline:
-    "Crio experiências digitais rápidas, elegantes e focadas em resultado.",
-};
-
-const projects = [
-  {
-    title: "SaaS Analytics",
-    description:
-      "Dashboard com métricas em tempo real, foco em performance e UX refinada.",
-  },
-  {
-    title: "E-commerce Premium",
-    description:
-      "Loja com checkout otimizado, arquitetura escalável e interface minimalista.",
-  },
-  {
-    title: "Plataforma Educacional",
-    description:
-      "Ambiente moderno para cursos online com trilhas e progresso inteligente.",
-  },
-];
+import { portfolio } from "@/data/portfolio";
 
 export default function Home() {
   return (
@@ -36,7 +12,7 @@ export default function Home() {
       <main className="relative mx-auto flex w-full max-w-6xl flex-col gap-28 px-6 py-10 sm:px-10 lg:px-16">
         <header className="flex items-center justify-between">
           <p className="text-sm font-medium tracking-tight text-zinc-600 dark:text-zinc-300">
-            {profile.name}
+            {portfolio.name}
           </p>
           <a
             href="#contato"
@@ -49,16 +25,16 @@ export default function Home() {
         <section className="grid items-center gap-12 lg:grid-cols-2">
           <div className="space-y-7">
             <p className="inline-flex rounded-full border border-zinc-200 bg-zinc-50 px-3 py-1 text-xs font-medium text-zinc-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300">
-              Disponível para projetos
+              {portfolio.availability}
             </p>
             <h1 className="text-4xl font-semibold tracking-tight text-zinc-950 sm:text-5xl lg:text-6xl dark:text-zinc-100">
-              {profile.name}
+              {portfolio.name}
             </h1>
             <h2 className="text-xl font-medium tracking-tight text-zinc-700 sm:text-2xl dark:text-zinc-300">
-              {profile.role}
+              {portfolio.role}
             </h2>
             <p className="max-w-xl text-base leading-relaxed text-zinc-600 sm:text-lg dark:text-zinc-400">
-              {profile.tagline}
+              {portfolio.tagline}
             </p>
             <div className="flex flex-wrap items-center gap-3">
               <a
@@ -80,8 +56,8 @@ export default function Home() {
             <div className="animate-float rounded-[2rem] border border-zinc-200/80 bg-white/60 p-4 shadow-sm backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-900/50">
               <div className="overflow-hidden rounded-[1.5rem] bg-zinc-100 dark:bg-zinc-800">
                 <Image
-                  src="/profile-photo.svg"
-                  alt="Foto de perfil"
+                  src={portfolio.image.src}
+                  alt={portfolio.image.alt}
                   width={640}
                   height={760}
                   priority
@@ -97,10 +73,7 @@ export default function Home() {
             Sobre
           </h3>
           <p className="max-w-3xl text-base leading-relaxed text-zinc-600 sm:text-lg dark:text-zinc-400">
-            Sou focado em construir produtos com excelente acabamento visual,
-            código limpo e atenção aos detalhes. Minha abordagem combina
-            estratégia de produto, engenharia sólida e design funcional para
-            criar experiências fluidas de ponta a ponta.
+            {portfolio.about}
           </p>
         </section>
 
@@ -109,7 +82,7 @@ export default function Home() {
             Projetos
           </h3>
           <div className="grid gap-4 md:grid-cols-3">
-            {projects.map((project) => (
+            {portfolio.projects.map((project) => (
               <article
                 key={project.title}
                 className="group rounded-3xl border border-zinc-200/80 bg-white/80 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:border-zinc-600"
@@ -137,18 +110,26 @@ export default function Home() {
             </div>
             <div className="flex gap-3">
               <a
-                href="mailto:seuemail@dominio.com"
+                href={`mailto:${portfolio.contact.email}`}
                 className="rounded-full bg-zinc-950 px-5 py-2.5 text-sm font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200"
               >
                 E-mail
               </a>
               <a
-                href="https://www.linkedin.com"
+                href={portfolio.contact.linkedin}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="rounded-full border border-zinc-300 px-5 py-2.5 text-sm font-medium text-zinc-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-zinc-500 hover:text-zinc-950 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-zinc-500 dark:hover:text-zinc-100"
               >
                 LinkedIn
+              </a>
+              <a
+                href={portfolio.contact.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-full border border-zinc-300 px-5 py-2.5 text-sm font-medium text-zinc-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-zinc-500 hover:text-zinc-950 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-zinc-500 dark:hover:text-zinc-100"
+              >
+                GitHub
               </a>
             </div>
           </div>

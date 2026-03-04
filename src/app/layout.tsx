@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { portfolio } from "@/data/portfolio";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "João Vitor | Portfólio",
-  description: "Portfólio de João Vitor, desenvolvedor full stack.",
+  title: `${portfolio.name} | Portfólio`,
+  description: `${portfolio.role} — ${portfolio.tagline}`,
 };
 
 export default function RootLayout({
