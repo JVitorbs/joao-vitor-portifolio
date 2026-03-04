@@ -25,7 +25,7 @@ export const portfolio = {
     label: "Mini 3D",
   },
   contact: {
-    email: "seuemail@dominio.com",
+    email: "jvitorbatista@gmail.com",
     linkedin: "https://www.linkedin.com/in/joão-vitor-batista-silva-50b280279",
     github: "https://github.com/JVitorbs",
   },
