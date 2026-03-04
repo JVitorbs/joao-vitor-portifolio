@@ -94,7 +94,7 @@ export default function Home() {
         <div className="absolute bottom-0 right-0 h-64 w-64 rounded-full bg-zinc-100/70 blur-3xl dark:bg-zinc-900/60" />
       </div>
 
-      <main className="relative mx-auto flex w-full max-w-6xl flex-col gap-28 px-6 py-10 sm:px-10 lg:px-16">
+      <main className="relative mx-auto flex w-full max-w-6xl flex-col gap-20 px-6 pb-10 pt-4 sm:gap-28 sm:px-10 sm:pt-10 lg:px-16">
         <header className="animate-fade-down flex items-center justify-between">
           <p className="text-sm font-medium tracking-tight text-zinc-600 dark:text-zinc-300">
             {portfolio.name}
