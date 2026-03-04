@@ -1,47 +1,40 @@
 "use client";
 
-import { useEffect, useState } from "react";
-
-type ThemeMode = "light" | "dark";
+import { FiSun } from "react-icons/fi";
+import { useEffect } from "react";
 
 export default function ThemeToggle() {
-  const [theme, setTheme] = useState<ThemeMode>(() => {
-    if (typeof window === "undefined") {
-      return "light";
-    }
-
-    const storedTheme = localStorage.getItem("theme-mode") as ThemeMode | null;
+  useEffect(() => {
+    const storedTheme = localStorage.getItem("theme-mode");
 
     if (storedTheme === "light" || storedTheme === "dark") {
-      return storedTheme;
+      document.documentElement.classList.remove("light", "dark");
+      document.documentElement.classList.add(storedTheme);
+      return;
     }
 
-    return window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
-  });
-
-  useEffect(() => {
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     document.documentElement.classList.remove("light", "dark");
-    document.documentElement.classList.add(theme);
-    localStorage.setItem("theme-mode", theme);
-  }, [theme]);
+    document.documentElement.classList.add(prefersDark ? "dark" : "light");
+  }, []);
 
   const toggleTheme = () => {
-    const nextTheme: ThemeMode = theme === "dark" ? "light" : "dark";
-    setTheme(nextTheme);
+    const isDark = document.documentElement.classList.contains("dark");
+    const nextTheme = isDark ? "light" : "dark";
+
+    document.documentElement.classList.remove("light", "dark");
+    document.documentElement.classList.add(nextTheme);
     localStorage.setItem("theme-mode", nextTheme);
-    document.documentElement.setAttribute("data-theme", nextTheme);
   };
 
   return (
     <button
       type="button"
       onClick={toggleTheme}
-      className="rounded-full border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-zinc-500 hover:text-zinc-950 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-zinc-500 dark:hover:text-zinc-100"
+      className="inline-flex h-9 w-9 items-center justify-center rounded-full border border-zinc-300 text-zinc-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-zinc-500 hover:text-zinc-950 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-zinc-500 dark:hover:text-zinc-100"
       aria-label="Alternar tema claro e escuro"
     >
-      {theme === "dark" ? "☀️ Claro" : "🌙 Escuro"}
+      <FiSun className="h-4 w-4" />
     </button>
   );
 }

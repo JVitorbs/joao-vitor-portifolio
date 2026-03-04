@@ -61,7 +61,7 @@ const stackIcons: Record<string, IconType> = {
 
 export default function Home() {
   return (
-    <div className="relative min-h-screen overflow-hidden bg-background">
+    <div className="background-texture relative min-h-screen overflow-hidden bg-background">
       <div className="pointer-events-none absolute inset-0">
         <div className="absolute -top-28 left-1/2 h-72 w-72 -translate-x-1/2 rounded-full bg-zinc-200/70 blur-3xl dark:bg-zinc-800/50" />
         <div className="absolute bottom-0 right-0 h-64 w-64 rounded-full bg-zinc-100/70 blur-3xl dark:bg-zinc-900/60" />
