@@ -27,6 +27,7 @@ import {
   SiTypescript,
 } from "react-icons/si";
 import AnimatedProfileImage from "@/components/AnimatedProfileImage";
+import ThemeToggle from "@/components/ThemeToggle";
 import TiltCard from "@/components/TiltCard";
 import { portfolio } from "@/data/portfolio";
 
@@ -71,12 +72,15 @@ export default function Home() {
           <p className="text-sm font-medium tracking-tight text-zinc-600 dark:text-zinc-300">
             {portfolio.name}
           </p>
-          <a
-            href="#contato"
-            className="rounded-full border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-zinc-500 hover:text-zinc-950 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-zinc-500 dark:hover:text-zinc-100"
-          >
-            Contato
-          </a>
+          <div className="flex items-center gap-3">
+            <ThemeToggle />
+            <a
+              href="#contato"
+              className="rounded-full border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-zinc-500 hover:text-zinc-950 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-zinc-500 dark:hover:text-zinc-100"
+            >
+              Contato
+            </a>
+          </div>
         </header>
 
         <section className="grid items-center gap-12 lg:grid-cols-2">
