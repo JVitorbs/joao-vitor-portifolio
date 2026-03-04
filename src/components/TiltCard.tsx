@@ -6,12 +6,14 @@ type TiltCardProps = {
   children: ReactNode;
   className?: string;
   style?: CSSProperties;
+  enableLight?: boolean;
 };
 
 export default function TiltCard({
   children,
   className = "",
   style,
+  enableLight = true,
 }: TiltCardProps) {
   const [transform, setTransform] = useState(
     "perspective(900px) rotateX(0deg) rotateY(0deg) translateZ(0px)"
@@ -32,16 +34,20 @@ export default function TiltCard({
     setTransform(
       `perspective(900px) rotateX(${rotateX.toFixed(2)}deg) rotateY(${rotateY.toFixed(2)}deg) translateZ(8px)`
     );
-    setLight({
-      x: (x / rect.width) * 100,
-      y: (y / rect.height) * 100,
-      opacity: 1,
-    });
+    if (enableLight) {
+      setLight({
+        x: (x / rect.width) * 100,
+        y: (y / rect.height) * 100,
+        opacity: 1,
+      });
+    }
   };
 
   const handleMouseLeave = () => {
     setTransform("perspective(900px) rotateX(0deg) rotateY(0deg) translateZ(0px)");
-    setLight((previous) => ({ ...previous, opacity: 0 }));
+    if (enableLight) {
+      setLight((previous) => ({ ...previous, opacity: 0 }));
+    }
   };
 
   return (
@@ -51,19 +57,23 @@ export default function TiltCard({
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      <div
-        className="pointer-events-none absolute inset-0 z-20 transition-opacity duration-300"
-        style={{
-          borderRadius: "inherit",
-          opacity: light.opacity,
-          background: `radial-gradient(220px circle at ${light.x}% ${light.y}%, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.12) 35%, rgba(255, 255, 255, 0) 70%)`,
-          mixBlendMode: "screen",
-        }}
-      />
-      <div
-        className="pointer-events-none absolute inset-[1px] z-10 border border-white/20 opacity-0 transition-opacity duration-300 dark:border-white/10"
-        style={{ borderRadius: "inherit", opacity: light.opacity * 0.8 }}
-      />
+      {enableLight ? (
+        <>
+          <div
+            className="pointer-events-none absolute inset-0 z-20 transition-opacity duration-300"
+            style={{
+              borderRadius: "inherit",
+              opacity: light.opacity,
+              background: `radial-gradient(220px circle at ${light.x}% ${light.y}%, rgba(255, 255, 255, 0.34), rgba(255, 255, 255, 0.12) 35%, rgba(255, 255, 255, 0) 70%)`,
+              mixBlendMode: "screen",
+            }}
+          />
+          <div
+            className="pointer-events-none absolute inset-[1px] z-10 border border-white/20 opacity-0 transition-opacity duration-300 dark:border-white/10"
+            style={{ borderRadius: "inherit", opacity: light.opacity * 0.8 }}
+          />
+        </>
+      ) : null}
       {children}
     </div>
   );

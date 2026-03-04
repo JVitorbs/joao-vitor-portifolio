@@ -208,6 +208,7 @@ export default function Home() {
             {portfolio.projects.map((project, index) => (
               <TiltCard
                 key={project.title}
+                enableLight={false}
                 style={{ animationDelay: `${560 + index * 120}ms` }}
                 className="animate-card-in group overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/80 transition-all duration-300 hover:-translate-y-1 hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:border-zinc-600"
               >
@@ -220,7 +221,7 @@ export default function Home() {
                   />
                 </div>
                 <div className="p-6">
-                  <h4 className="text-lg font-medium tracking-tight text-zinc-900 transition-colors duration-300 group-hover:text-zinc-950 dark:text-zinc-100">
+                  <h4 className="text-lg font-medium tracking-tight text-zinc-900 dark:text-zinc-100">
                     {project.title}
                   </h4>
                   <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
