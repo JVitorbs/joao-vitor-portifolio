@@ -82,25 +82,25 @@ export const portfolio = {
       },
     },
     {
-      title: "E-commerce Premium",
+      title: "Mini Marketplace",
       description: {
         pt: "Loja com checkout otimizado, arquitetura escalável e interface minimalista.",
         en: "Store with optimized checkout, scalable architecture, and minimalist interface.",
       },
       image: {
-        src: "/projects/ecommerce.svg",
-        alt: "Capa do projeto E-commerce Premium",
+        src: "/projects/ecommerce.png",
+        alt: "Capa do projeto Mini Marketplace",
       },
     },
     {
-      title: "Plataforma Educacional",
+      title: "Site Estático para Laboratório",
       description: {
-        pt: "Ambiente moderno para cursos online com trilhas e progresso inteligente.",
-        en: "Modern online learning environment with paths and smart progress tracking.",
+        pt: "Ambiente virtual com momentos importantes do laboratório e divulgação de dados.",
+        en: "Virtual environment to record important moments of the laboratory and share data.",
       },
       image: {
-        src: "/projects/educacional.svg",
-        alt: "Capa do projeto Plataforma Educacional",
+        src: "/projects/lab_website.png",
+        alt: "Capa do projeto Site Estático para Laboratório",
       },
     },
   ] as Project[],
