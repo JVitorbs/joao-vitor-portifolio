@@ -145,6 +145,13 @@ export default function Home() {
               >
                 {text.aboutMe}
               </a>
+              <a
+                href={portfolio.contact.cv[locale]}
+                download
+                className="rounded-full border border-zinc-300 px-6 py-3 text-sm font-medium text-zinc-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-zinc-500 hover:text-zinc-950 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-zinc-500 dark:hover:text-zinc-100"
+              >
+                {text.cv}
+              </a>
             </div>
           </div>
 

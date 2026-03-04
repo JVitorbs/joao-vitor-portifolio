@@ -42,6 +42,10 @@ export const portfolio = {
     email: "jvitorbatista@gmail.com",
     linkedin: "https://www.linkedin.com/in/joão-vitor-batista-silva-50b280279",
     github: "https://github.com/JVitorbs",
+    cv: {
+      pt: "/cv-joao-vitor-batista-pt.pdf",
+      en: "/cv-joao-vitor-batista-en.pdf",
+    } as LocalizedText,
   },
   labels: {
     pt: {
@@ -54,6 +58,7 @@ export const portfolio = {
       ctaTitle: "Quer tornar seu projeto realidade?",
       ctaDescription: "Me chame por e-mail ou LinkedIn para conversarmos.",
       email: "E-mail",
+      cv: "Baixar CV",
       loading: "Carregando experiência...",
     },
     en: {
@@ -66,6 +71,7 @@ export const portfolio = {
       ctaTitle: "Want to bring your project to life?",
       ctaDescription: "Reach out by email or LinkedIn and let's talk.",
       email: "Email",
+      cv: "Download CV",
       loading: "Loading experience...",
     },
   },
