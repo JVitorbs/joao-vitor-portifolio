@@ -1,6 +1,10 @@
+export type Locale = "pt" | "en";
+
+export type LocalizedText = Record<Locale, string>;
+
 export type Project = {
   title: string;
-  description: string;
+  description: LocalizedText;
   image: {
     src: string;
     alt: string;
@@ -9,12 +13,22 @@ export type Project = {
 
 export const portfolio = {
   name: "João Vitor Batista",
-  role: "Desenvolvedor Full Stack",
-  tagline:
-    "Crio experiências digitais rápidas, elegantes e focadas em resultado.",
-  about:
-    "Sou focado em construir produtos com excelente acabamento visual, código limpo e atenção aos detalhes. Minha abordagem combina estratégia de produto, engenharia sólida e design funcional para criar experiências fluidas de ponta a ponta.",
-  availability: "Disponível para projetos",
+  role: {
+    pt: "Desenvolvedor Full Stack",
+    en: "Full Stack Developer",
+  } as LocalizedText,
+  tagline: {
+    pt: "Crio experiências digitais rápidas, elegantes e focadas em resultado.",
+    en: "I build fast, elegant digital experiences focused on real outcomes.",
+  } as LocalizedText,
+  about: {
+    pt: "Sou focado em construir produtos com excelente acabamento visual, código limpo e atenção aos detalhes. Minha abordagem combina estratégia de produto, engenharia sólida e design funcional para criar experiências fluidas de ponta a ponta.",
+    en: "I focus on building products with polished visuals, clean code, and attention to detail. My approach combines product strategy, solid engineering, and functional design to deliver fluid end-to-end experiences.",
+  } as LocalizedText,
+  availability: {
+    pt: "Disponível para projetos",
+    en: "Available for projects",
+  } as LocalizedText,
   image: {
     src: "/profile-photo.jpg",
     alt: "Foto de perfil de João Vitor Batista",
@@ -29,11 +43,39 @@ export const portfolio = {
     linkedin: "https://www.linkedin.com/in/joão-vitor-batista-silva-50b280279",
     github: "https://github.com/JVitorbs",
   },
+  labels: {
+    pt: {
+      contact: "Contato",
+      seeProjects: "Ver projetos",
+      aboutMe: "Sobre mim",
+      aboutTitle: "Sobre",
+      stacksTitle: "Stacks",
+      projectsTitle: "Projetos",
+      ctaTitle: "Quer tornar seu projeto realidade?",
+      ctaDescription: "Me chame por e-mail ou LinkedIn para conversarmos.",
+      email: "E-mail",
+      loading: "Carregando experiência...",
+    },
+    en: {
+      contact: "Contact",
+      seeProjects: "View projects",
+      aboutMe: "About me",
+      aboutTitle: "About",
+      stacksTitle: "Stack",
+      projectsTitle: "Projects",
+      ctaTitle: "Want to bring your project to life?",
+      ctaDescription: "Reach out by email or LinkedIn and let's talk.",
+      email: "Email",
+      loading: "Loading experience...",
+    },
+  },
   projects: [
     {
       title: "SomosIBP",
-      description:
-        "Plataforma Web para divulgação de eventos, história e atividades da IBP.",
+      description: {
+        pt: "Plataforma web para divulgação de eventos, história e atividades da IBP.",
+        en: "Web platform for sharing IBP events, history, and community activities.",
+      },
       image: {
         src: "/projects/somosibp.svg",
         alt: "Capa do projeto SomosIBP",
@@ -41,8 +83,10 @@ export const portfolio = {
     },
     {
       title: "E-commerce Premium",
-      description:
-        "Loja com checkout otimizado, arquitetura escalável e interface minimalista.",
+      description: {
+        pt: "Loja com checkout otimizado, arquitetura escalável e interface minimalista.",
+        en: "Store with optimized checkout, scalable architecture, and minimalist interface.",
+      },
       image: {
         src: "/projects/ecommerce.svg",
         alt: "Capa do projeto E-commerce Premium",
@@ -50,8 +94,10 @@ export const portfolio = {
     },
     {
       title: "Plataforma Educacional",
-      description:
-        "Ambiente moderno para cursos online com trilhas e progresso inteligente.",
+      description: {
+        pt: "Ambiente moderno para cursos online com trilhas e progresso inteligente.",
+        en: "Modern online learning environment with paths and smart progress tracking.",
+      },
       image: {
         src: "/projects/educacional.svg",
         alt: "Capa do projeto Plataforma Educacional",

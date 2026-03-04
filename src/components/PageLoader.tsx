@@ -42,7 +42,7 @@ export default function PageLoader() {
             {portfolio.name}
           </p>
           <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
-            Carregando experiência...
+            {portfolio.labels.en.loading}
           </p>
         </div>
       </div>

@@ -1,4 +1,7 @@
+"use client";
+
 import Image from "next/image";
+import { useState } from "react";
 import { IconType } from "react-icons";
 import { FaChartBar, FaChartLine } from "react-icons/fa6";
 import {
@@ -29,7 +32,7 @@ import {
 import AnimatedProfileImage from "@/components/AnimatedProfileImage";
 import ThemeToggle from "@/components/ThemeToggle";
 import TiltCard from "@/components/TiltCard";
-import { portfolio } from "@/data/portfolio";
+import { Locale, portfolio } from "@/data/portfolio";
 
 const stackIcons: Record<string, IconType> = {
   HTML: SiHtml5,
@@ -60,6 +63,27 @@ const stackIcons: Record<string, IconType> = {
 };
 
 export default function Home() {
+  const [locale, setLocale] = useState<Locale>(() => {
+    if (typeof window === "undefined") {
+      return "pt";
+    }
+
+    const storedLocale = localStorage.getItem("portfolio-locale");
+    if (storedLocale === "pt" || storedLocale === "en") {
+      return storedLocale;
+    }
+
+    return navigator.language.toLowerCase().startsWith("en") ? "en" : "pt";
+  });
+
+  const toggleLocale = () => {
+    const nextLocale: Locale = locale === "pt" ? "en" : "pt";
+    setLocale(nextLocale);
+    localStorage.setItem("portfolio-locale", nextLocale);
+  };
+
+  const text = portfolio.labels[locale];
+
   return (
     <div className="background-texture relative min-h-screen overflow-hidden bg-background">
       <div className="pointer-events-none absolute inset-0">
@@ -73,12 +97,20 @@ export default function Home() {
             {portfolio.name}
           </p>
           <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={toggleLocale}
+              className="rounded-full border border-zinc-300 px-3 py-2 text-xs font-semibold tracking-wide text-zinc-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-zinc-500 hover:text-zinc-950 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-zinc-500 dark:hover:text-zinc-100"
+              aria-label="Switch language"
+            >
+              {locale === "pt" ? "EN" : "PT"}
+            </button>
             <ThemeToggle />
             <a
               href="#contato"
               className="rounded-full border border-zinc-300 px-4 py-2 text-sm font-medium text-zinc-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-zinc-500 hover:text-zinc-950 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-zinc-500 dark:hover:text-zinc-100"
             >
-              Contato
+              {text.contact}
             </a>
           </div>
         </header>
@@ -86,29 +118,29 @@ export default function Home() {
         <section className="grid items-center gap-12 lg:grid-cols-2">
           <div className="animate-reveal-left delay-1 space-y-7">
             <p className="inline-flex rounded-full border border-zinc-200 bg-zinc-50 px-3 py-1 text-xs font-medium text-zinc-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300">
-              {portfolio.availability}
+              {portfolio.availability[locale]}
             </p>
             <h1 className="text-4xl font-semibold tracking-tight text-zinc-950 sm:text-5xl lg:text-6xl dark:text-zinc-100">
               {portfolio.name}
             </h1>
             <h2 className="text-xl font-medium tracking-tight text-zinc-700 sm:text-2xl dark:text-zinc-300">
-              {portfolio.role}
+              {portfolio.role[locale]}
             </h2>
             <p className="max-w-xl text-base leading-relaxed text-zinc-600 sm:text-lg dark:text-zinc-400">
-              {portfolio.tagline}
+              {portfolio.tagline[locale]}
             </p>
             <div className="flex flex-wrap items-center gap-3">
               <a
                 href="#projetos"
                 className="rounded-full bg-zinc-950 px-6 py-3 text-sm font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200"
               >
-                Ver projetos
+                {text.seeProjects}
               </a>
               <a
                 href="#sobre"
                 className="rounded-full border border-zinc-300 px-6 py-3 text-sm font-medium text-zinc-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-zinc-500 hover:text-zinc-950 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-zinc-500 dark:hover:text-zinc-100"
               >
-                Sobre mim
+                {text.aboutMe}
               </a>
             </div>
           </div>
@@ -133,10 +165,10 @@ export default function Home() {
           className="animate-rise-blur delay-2 scroll-mt-24 space-y-4"
         >
           <h3 className="text-2xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-100">
-            Sobre
+            {text.aboutTitle}
           </h3>
           <p className="max-w-3xl text-base leading-relaxed text-zinc-600 sm:text-lg dark:text-zinc-400">
-            {portfolio.about}
+            {portfolio.about[locale]}
           </p>
         </section>
 
@@ -145,7 +177,7 @@ export default function Home() {
           className="animate-rise-blur delay-3 scroll-mt-24 space-y-6"
         >
           <h3 className="text-2xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-100">
-            Stacks
+            {text.stacksTitle}
           </h3>
           <div className="flex flex-wrap gap-2.5">
             {portfolio.stacks.map((stack, index) => {
@@ -170,7 +202,7 @@ export default function Home() {
           className="animate-rise-blur delay-4 scroll-mt-24 space-y-6"
         >
           <h3 className="text-2xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-100">
-            Projetos
+            {text.projectsTitle}
           </h3>
           <div className="grid gap-4 md:grid-cols-3">
             {portfolio.projects.map((project, index) => (
@@ -192,7 +224,7 @@ export default function Home() {
                     {project.title}
                   </h4>
                   <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-                    {project.description}
+                    {project.description[locale]}
                   </p>
                 </div>
               </TiltCard>
@@ -223,10 +255,10 @@ export default function Home() {
 
               <div>
                 <h3 className="text-2xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-100">
-                  Quer tornar seu projeto realidade?
+                  {text.ctaTitle}
                 </h3>
                 <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-                  Me chame por e-mail ou LinkedIn para conversarmos.
+                  {text.ctaDescription}
                 </p>
               </div>
             </div>
@@ -236,7 +268,7 @@ export default function Home() {
                   href={`mailto:${portfolio.contact.email}`}
                   className="rounded-full bg-zinc-950 px-5 py-2.5 text-sm font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200"
                 >
-                  E-mail
+                  {text.email}
                 </a>
                 <a
                   href={portfolio.contact.linkedin}
