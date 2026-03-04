@@ -77,7 +77,7 @@ export const portfolio = {
         en: "Web platform for sharing IBP events, history, and community activities.",
       },
       image: {
-        src: "/projects/somosibp.svg",
+        src: "/projects/somosibp.png",
         alt: "Capa do projeto SomosIBP",
       },
     },
@@ -95,7 +95,7 @@ export const portfolio = {
     {
       title: "Site Estático para Laboratório",
       description: {
-        pt: "Ambiente virtual com momentos importantes do laboratório e divulgação de dados.",
+        pt: "Momentos importantes do laboratório e divulgação de dados.",
         en: "Virtual environment to record important moments of the laboratory and share data.",
       },
       image: {

@@ -75,6 +75,7 @@ export default function Home() {
 
     return navigator.language.toLowerCase().startsWith("en") ? "en" : "pt";
   });
+  const [expandedProjectIndex, setExpandedProjectIndex] = useState<number | null>(null);
 
   const toggleLocale = () => {
     const nextLocale: Locale = locale === "pt" ? "en" : "pt";
@@ -83,6 +84,8 @@ export default function Home() {
   };
 
   const text = portfolio.labels[locale];
+  const expandedProject =
+    expandedProjectIndex === null ? null : portfolio.projects[expandedProjectIndex];
 
   return (
     <div className="background-texture relative min-h-screen overflow-hidden bg-background">
@@ -206,29 +209,35 @@ export default function Home() {
           </h3>
           <div className="grid gap-4 md:grid-cols-3">
             {portfolio.projects.map((project, index) => (
-              <TiltCard
+              <button
                 key={project.title}
-                enableLight={false}
-                style={{ animationDelay: `${560 + index * 120}ms` }}
-                className="animate-card-in group overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/80 transition-all duration-300 hover:-translate-y-1 hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:border-zinc-600"
+                type="button"
+                onClick={() => setExpandedProjectIndex(index)}
+                className="text-left"
               >
-                <div className="relative aspect-[16/10] overflow-hidden bg-zinc-100 dark:bg-zinc-800">
-                  <Image
-                    src={project.image.src}
-                    alt={project.image.alt}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                <div className="p-6">
-                  <h4 className="text-lg font-medium tracking-tight text-zinc-900 dark:text-zinc-100">
-                    {project.title}
-                  </h4>
-                  <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-                    {project.description[locale]}
-                  </p>
-                </div>
-              </TiltCard>
+                <TiltCard
+                  enableLight={false}
+                  style={{ animationDelay: `${560 + index * 120}ms` }}
+                  className="animate-card-in group overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/80 transition-all duration-300 hover:-translate-y-1 hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:border-zinc-600"
+                >
+                  <div className="relative aspect-[16/10] overflow-hidden bg-zinc-100 dark:bg-zinc-800">
+                    <Image
+                      src={project.image.src}
+                      alt={project.image.alt}
+                      fill
+                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                  </div>
+                  <div className="p-6">
+                    <h4 className="text-lg font-medium tracking-tight text-zinc-900 dark:text-zinc-100">
+                      {project.title}
+                    </h4>
+                    <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+                      {project.description[locale]}
+                    </p>
+                  </div>
+                </TiltCard>
+              </button>
             ))}
           </div>
         </section>
@@ -291,6 +300,44 @@ export default function Home() {
           </div>
         </section>
       </main>
+
+      {expandedProject ? (
+        <div
+          className="fixed inset-0 z-[140] flex items-center justify-center bg-black/60 p-4 backdrop-blur-sm"
+          onClick={() => setExpandedProjectIndex(null)}
+        >
+          <div
+            role="dialog"
+            aria-modal="true"
+            className="w-full max-w-4xl overflow-hidden rounded-3xl border border-zinc-200/80 bg-white shadow-2xl dark:border-zinc-800 dark:bg-zinc-900"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <div className="relative aspect-[16/10] bg-zinc-100 dark:bg-zinc-800">
+              <Image
+                src={expandedProject.image.src}
+                alt={expandedProject.image.alt}
+                fill
+                className="object-cover"
+              />
+              <button
+                type="button"
+                onClick={() => setExpandedProjectIndex(null)}
+                className="absolute right-4 top-4 rounded-full bg-black/50 px-3 py-1.5 text-xs font-medium text-white transition-colors hover:bg-black/70"
+              >
+                {locale === "pt" ? "Fechar" : "Close"}
+              </button>
+            </div>
+            <div className="p-6 sm:p-8">
+              <h4 className="text-2xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-100">
+                {expandedProject.title}
+              </h4>
+              <p className="mt-4 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+                {expandedProject.description[locale]}
+              </p>
+            </div>
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
