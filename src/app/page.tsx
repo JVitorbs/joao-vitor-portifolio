@@ -26,6 +26,8 @@ import {
   SiTensorflow,
   SiTypescript,
 } from "react-icons/si";
+import AnimatedProfileImage from "@/components/AnimatedProfileImage";
+import TiltCard from "@/components/TiltCard";
 import { portfolio } from "@/data/portfolio";
 
 const stackIcons: Record<string, IconType> = {
@@ -65,7 +67,7 @@ export default function Home() {
       </div>
 
       <main className="relative mx-auto flex w-full max-w-6xl flex-col gap-28 px-6 py-10 sm:px-10 lg:px-16">
-        <header className="flex items-center justify-between">
+        <header className="animate-fade-down flex items-center justify-between">
           <p className="text-sm font-medium tracking-tight text-zinc-600 dark:text-zinc-300">
             {portfolio.name}
           </p>
@@ -78,7 +80,7 @@ export default function Home() {
         </header>
 
         <section className="grid items-center gap-12 lg:grid-cols-2">
-          <div className="space-y-7">
+          <div className="animate-reveal-left delay-1 space-y-7">
             <p className="inline-flex rounded-full border border-zinc-200 bg-zinc-50 px-3 py-1 text-xs font-medium text-zinc-600 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300">
               {portfolio.availability}
             </p>
@@ -107,23 +109,25 @@ export default function Home() {
             </div>
           </div>
 
-          <div className="relative mx-auto w-full max-w-sm lg:mx-0 lg:justify-self-end">
-            <div className="animate-float rounded-[2rem] border border-zinc-200/80 bg-white/60 p-4 shadow-sm backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-900/50">
-              <div className="overflow-hidden rounded-[1.5rem] bg-zinc-100 dark:bg-zinc-800">
-                <Image
+          <div className="animate-reveal-right delay-2 relative mx-auto w-full max-w-sm lg:mx-0 lg:justify-self-end">
+            <TiltCard className="rounded-[2rem] border border-zinc-200/80 bg-white/60 p-4 shadow-sm backdrop-blur-sm dark:border-zinc-800 dark:bg-zinc-900/50">
+              <div className="animate-float">
+                <AnimatedProfileImage
                   src={portfolio.image.src}
                   alt={portfolio.image.alt}
                   width={640}
                   height={760}
                   priority
-                  className="h-auto w-full"
                 />
               </div>
-            </div>
+            </TiltCard>
           </div>
         </section>
 
-        <section id="sobre" className="scroll-mt-24 space-y-4">
+        <section
+          id="sobre"
+          className="animate-rise-blur delay-2 scroll-mt-24 space-y-4"
+        >
           <h3 className="text-2xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-100">
             Sobre
           </h3>
@@ -132,18 +136,22 @@ export default function Home() {
           </p>
         </section>
 
-        <section id="stacks" className="scroll-mt-24 space-y-6">
+        <section
+          id="stacks"
+          className="animate-rise-blur delay-3 scroll-mt-24 space-y-6"
+        >
           <h3 className="text-2xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-100">
             Stacks
           </h3>
           <div className="flex flex-wrap gap-2.5">
-            {portfolio.stacks.map((stack) => {
+            {portfolio.stacks.map((stack, index) => {
               const Icon = stackIcons[stack];
 
               return (
                 <span
                   key={stack}
-                  className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white/90 px-3 py-1.5 text-xs font-medium tracking-tight text-zinc-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-zinc-400 hover:text-zinc-950 dark:border-zinc-700 dark:bg-zinc-900/80 dark:text-zinc-300 dark:hover:border-zinc-500 dark:hover:text-zinc-100"
+                  style={{ animationDelay: `${480 + index * 40}ms` }}
+                  className="animate-chip-in inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white/90 px-3 py-1.5 text-xs font-medium tracking-tight text-zinc-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-zinc-400 hover:text-zinc-950 dark:border-zinc-700 dark:bg-zinc-900/80 dark:text-zinc-300 dark:hover:border-zinc-500 dark:hover:text-zinc-100"
                 >
                   {Icon ? <Icon className="h-3.5 w-3.5" /> : null}
                   {stack}
@@ -153,15 +161,19 @@ export default function Home() {
           </div>
         </section>
 
-        <section id="projetos" className="scroll-mt-24 space-y-6">
+        <section
+          id="projetos"
+          className="animate-rise-blur delay-4 scroll-mt-24 space-y-6"
+        >
           <h3 className="text-2xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-100">
             Projetos
           </h3>
           <div className="grid gap-4 md:grid-cols-3">
-            {portfolio.projects.map((project) => (
-              <article
+            {portfolio.projects.map((project, index) => (
+              <TiltCard
                 key={project.title}
-                className="group overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/80 transition-all duration-300 hover:-translate-y-1 hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:border-zinc-600"
+                style={{ animationDelay: `${560 + index * 120}ms` }}
+                className="animate-card-in group overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/80 transition-all duration-300 hover:-translate-y-1 hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:border-zinc-600"
               >
                 <div className="relative aspect-[16/10] overflow-hidden bg-zinc-100 dark:bg-zinc-800">
                   <Image
@@ -179,12 +191,15 @@ export default function Home() {
                     {project.description}
                   </p>
                 </div>
-              </article>
+              </TiltCard>
             ))}
           </div>
         </section>
 
-        <section id="contato" className="scroll-mt-24 pb-8">
+        <section
+          id="contato"
+          className="animate-rise-blur delay-5 scroll-mt-24 pb-8"
+        >
           <div className="flex flex-col gap-5 rounded-3xl border border-zinc-200/80 bg-zinc-50/70 px-6 py-8 dark:border-zinc-800 dark:bg-zinc-900/50 sm:flex-row sm:items-center sm:justify-between sm:px-8">
             <div className="flex items-center gap-3">
               <div className="w-20 rounded-2xl border border-zinc-200/90 bg-white/85 p-1.5 shadow-sm backdrop-blur-md transition-all duration-300 hover:-translate-y-1 dark:border-zinc-700 dark:bg-zinc-900/80 sm:w-24">

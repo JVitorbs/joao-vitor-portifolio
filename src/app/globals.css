@@ -39,6 +39,146 @@ body {
   }
 }
 
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes revealLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-24px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes revealRight {
+  from {
+    opacity: 0;
+    transform: translateX(24px);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes riseBlur {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+    filter: blur(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+@keyframes cardIn {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes chipIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes photoMount {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.97);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
 .animate-float {
   animation: float 6s ease-in-out infinite;
+}
+
+.animate-fade-down {
+  opacity: 0;
+  animation: fadeDown 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-reveal-left {
+  opacity: 0;
+  animation: revealLeft 850ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-reveal-right {
+  opacity: 0;
+  animation: revealRight 850ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-rise-blur {
+  opacity: 0;
+  animation: riseBlur 900ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-card-in {
+  opacity: 0;
+  animation: cardIn 700ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-chip-in {
+  opacity: 0;
+  animation: chipIn 500ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+.animate-photo-mount {
+  opacity: 0;
+  animation: photoMount 900ms cubic-bezier(0.22, 1, 0.36, 1) 120ms forwards;
+}
+
+.delay-1 {
+  animation-delay: 120ms;
+}
+
+.delay-2 {
+  animation-delay: 240ms;
+}
+
+.delay-3 {
+  animation-delay: 360ms;
+}
+
+.delay-4 {
+  animation-delay: 480ms;
+}
+
+.delay-5 {
+  animation-delay: 600ms;
 }
