@@ -85,14 +85,24 @@ export default function Home() {
             {portfolio.projects.map((project) => (
               <article
                 key={project.title}
-                className="group rounded-3xl border border-zinc-200/80 bg-white/80 p-6 transition-all duration-300 hover:-translate-y-1 hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:border-zinc-600"
+                className="group overflow-hidden rounded-3xl border border-zinc-200/80 bg-white/80 transition-all duration-300 hover:-translate-y-1 hover:border-zinc-400 dark:border-zinc-800 dark:bg-zinc-900/50 dark:hover:border-zinc-600"
               >
-                <h4 className="text-lg font-medium tracking-tight text-zinc-900 transition-colors duration-300 group-hover:text-zinc-950 dark:text-zinc-100">
-                  {project.title}
-                </h4>
-                <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
-                  {project.description}
-                </p>
+                <div className="relative aspect-[16/10] overflow-hidden bg-zinc-100 dark:bg-zinc-800">
+                  <Image
+                    src={project.image.src}
+                    alt={project.image.alt}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div className="p-6">
+                  <h4 className="text-lg font-medium tracking-tight text-zinc-900 transition-colors duration-300 group-hover:text-zinc-950 dark:text-zinc-100">
+                    {project.title}
+                  </h4>
+                  <p className="mt-3 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+                    {project.description}
+                  </p>
+                </div>
               </article>
             ))}
           </div>
@@ -100,37 +110,55 @@ export default function Home() {
 
         <section id="contato" className="scroll-mt-24 pb-8">
           <div className="flex flex-col gap-5 rounded-3xl border border-zinc-200/80 bg-zinc-50/70 px-6 py-8 dark:border-zinc-800 dark:bg-zinc-900/50 sm:flex-row sm:items-center sm:justify-between sm:px-8">
-            <div>
-              <h3 className="text-2xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-100">
-                Vamos construir algo incrível?
-              </h3>
-              <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-                Me chame por e-mail ou LinkedIn para conversarmos.
-              </p>
+            <div className="flex items-center gap-3">
+              <div className="w-20 rounded-2xl border border-zinc-200/90 bg-white/85 p-1.5 shadow-sm backdrop-blur-md transition-all duration-300 hover:-translate-y-1 dark:border-zinc-700 dark:bg-zinc-900/80 sm:w-24">
+                <div className="overflow-hidden rounded-xl bg-zinc-100 dark:bg-zinc-800">
+                  <Image
+                    src={portfolio.mini3d.src}
+                    alt={portfolio.mini3d.alt}
+                    width={120}
+                    height={120}
+                    className="h-auto w-full"
+                  />
+                </div>
+                <p className="px-1 pt-1.5 text-[10px] font-medium tracking-tight text-zinc-600 dark:text-zinc-300">
+                  {portfolio.mini3d.label}
+                </p>
+              </div>
+
+              <div>
+                <h3 className="text-2xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-100">
+                  Quer tornar seu projeto realidade?
+                </h3>
+                <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+                  Me chame por e-mail ou LinkedIn para conversarmos.
+                </p>
+              </div>
             </div>
-            <div className="flex gap-3">
-              <a
-                href={`mailto:${portfolio.contact.email}`}
-                className="rounded-full bg-zinc-950 px-5 py-2.5 text-sm font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200"
-              >
-                E-mail
-              </a>
-              <a
-                href={portfolio.contact.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-full border border-zinc-300 px-5 py-2.5 text-sm font-medium text-zinc-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-zinc-500 hover:text-zinc-950 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-zinc-500 dark:hover:text-zinc-100"
-              >
-                LinkedIn
-              </a>
-              <a
-                href={portfolio.contact.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-full border border-zinc-300 px-5 py-2.5 text-sm font-medium text-zinc-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-zinc-500 hover:text-zinc-950 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-zinc-500 dark:hover:text-zinc-100"
-              >
-                GitHub
-              </a>
+
+            <div className="flex flex-wrap gap-3">
+                <a
+                  href={`mailto:${portfolio.contact.email}`}
+                  className="rounded-full bg-zinc-950 px-5 py-2.5 text-sm font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200"
+                >
+                  E-mail
+                </a>
+                <a
+                  href={portfolio.contact.linkedin}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-zinc-300 px-5 py-2.5 text-sm font-medium text-zinc-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-zinc-500 hover:text-zinc-950 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-zinc-500 dark:hover:text-zinc-100"
+                >
+                  LinkedIn
+                </a>
+                <a
+                  href={portfolio.contact.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full border border-zinc-300 px-5 py-2.5 text-sm font-medium text-zinc-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-zinc-500 hover:text-zinc-950 dark:border-zinc-700 dark:text-zinc-300 dark:hover:border-zinc-500 dark:hover:text-zinc-100"
+                >
+                  GitHub
+                </a>
             </div>
           </div>
         </section>
