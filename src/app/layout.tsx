@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import PageLoader from "@/components/PageLoader";
 import { portfolio } from "@/data/portfolio";
 import "./globals.css";
 
@@ -28,6 +29,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <PageLoader />
         {children}
       </body>
     </html>
