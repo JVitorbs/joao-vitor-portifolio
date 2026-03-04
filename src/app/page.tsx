@@ -1,5 +1,60 @@
 import Image from "next/image";
+import { IconType } from "react-icons";
+import { FaChartBar, FaChartLine } from "react-icons/fa6";
+import {
+  SiBootstrap,
+  SiCss,
+  SiDocker,
+  SiExpress,
+  SiGit,
+  SiHtml5,
+  SiJavascript,
+  SiLinux,
+  SiMysql,
+  SiNextdotjs,
+  SiNodedotjs,
+  SiNumpy,
+  SiPandas,
+  SiPostgresql,
+  SiPrisma,
+  SiPython,
+  SiReact,
+  SiSass,
+  SiScikitlearn,
+  SiSvelte,
+  SiTailwindcss,
+  SiTensorflow,
+  SiTypescript,
+} from "react-icons/si";
 import { portfolio } from "@/data/portfolio";
+
+const stackIcons: Record<string, IconType> = {
+  HTML: SiHtml5,
+  CSS: SiCss,
+  JavaScript: SiJavascript,
+  TypeScript: SiTypescript,
+  React: SiReact,
+  "Next.js": SiNextdotjs,
+  Svelte: SiSvelte,
+  Tailwind: SiTailwindcss,
+  Bootstrap: SiBootstrap,
+  Sass: SiSass,
+  "Node.js": SiNodedotjs,
+  Express: SiExpress,
+  Python: SiPython,
+  NumPy: SiNumpy,
+  Pandas: SiPandas,
+  "Scikit-Learn": SiScikitlearn,
+  Matplotlib: FaChartLine,
+  Seaborn: FaChartBar,
+  TensorFlow: SiTensorflow,
+  PostgreSQL: SiPostgresql,
+  MySQL: SiMysql,
+  Prisma: SiPrisma,
+  Docker: SiDocker,
+  Git: SiGit,
+  Linux: SiLinux,
+};
 
 export default function Home() {
   return (
@@ -75,6 +130,27 @@ export default function Home() {
           <p className="max-w-3xl text-base leading-relaxed text-zinc-600 sm:text-lg dark:text-zinc-400">
             {portfolio.about}
           </p>
+        </section>
+
+        <section id="stacks" className="scroll-mt-24 space-y-6">
+          <h3 className="text-2xl font-semibold tracking-tight text-zinc-950 dark:text-zinc-100">
+            Stacks
+          </h3>
+          <div className="flex flex-wrap gap-2.5">
+            {portfolio.stacks.map((stack) => {
+              const Icon = stackIcons[stack];
+
+              return (
+                <span
+                  key={stack}
+                  className="inline-flex items-center gap-2 rounded-full border border-zinc-200 bg-white/90 px-3 py-1.5 text-xs font-medium tracking-tight text-zinc-700 transition-all duration-300 hover:-translate-y-0.5 hover:border-zinc-400 hover:text-zinc-950 dark:border-zinc-700 dark:bg-zinc-900/80 dark:text-zinc-300 dark:hover:border-zinc-500 dark:hover:text-zinc-100"
+                >
+                  {Icon ? <Icon className="h-3.5 w-3.5" /> : null}
+                  {stack}
+                </span>
+              );
+            })}
+          </div>
         </section>
 
         <section id="projetos" className="scroll-mt-24 space-y-6">
