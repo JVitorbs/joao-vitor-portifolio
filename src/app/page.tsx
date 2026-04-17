@@ -452,6 +452,16 @@ export default function Home() {
               <p className="mt-4 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
                 {expandedProject.description[locale]}
               </p>
+              <div className="mt-6">
+                <a
+                  href={expandedProject.repositoryUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex rounded-full bg-zinc-950 px-5 py-2.5 text-sm font-medium text-white transition-all duration-300 hover:-translate-y-0.5 hover:bg-zinc-800 dark:bg-zinc-100 dark:text-zinc-900 dark:hover:bg-zinc-200"
+                >
+                  {locale === "pt" ? "Ver repositório" : "View repository"}
+                </a>
+              </div>
             </div>
           </div>
         </div>
