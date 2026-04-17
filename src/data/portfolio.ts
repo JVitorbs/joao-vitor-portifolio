@@ -5,10 +5,10 @@ export type LocalizedText = Record<Locale, string>;
 export type Project = {
   title: string;
   description: LocalizedText;
-  image: {
+  images: {
     src: string;
     alt: string;
-  };
+  }[];
 };
 
 export const portfolio = {
@@ -82,10 +82,12 @@ export const portfolio = {
         pt: "Plataforma web para divulgação de eventos, história e atividades da IBP.",
         en: "Web platform for sharing IBP events, history, and community activities.",
       },
-      image: {
-        src: "/projects/somosibp.png",
-        alt: "Capa do projeto SomosIBP",
-      },
+      images: [
+        {
+          src: "/projects/somosibp.png",
+          alt: "Capa do projeto SomosIBP",
+        },
+      ],
     },
     {
       title: "Mini Marketplace",
@@ -93,10 +95,37 @@ export const portfolio = {
         pt: "Loja com checkout otimizado, arquitetura escalável e interface minimalista.",
         en: "Store with optimized checkout, scalable architecture, and minimalist interface.",
       },
-      image: {
-        src: "/projects/ecommerce.png",
-        alt: "Capa do projeto Mini Marketplace",
+      images: [
+        {
+          src: "/projects/ecommerce.png",
+          alt: "Capa do projeto Mini Marketplace",
+        },
+      ],
+    },
+    {
+      title: "Mini TT",
+      description: {
+        pt: "Rede social microblog com autenticação, posts, curtidas, busca e timeline paginada.",
+        en: "Microblog social network with authentication, posts, likes, search, and paginated timeline.",
       },
+      images: [
+        {
+          src: "/projects/mini_tt/login-light.png",
+          alt: "Tela de login do Mini TT em tema claro",
+        },
+        {
+          src: "/projects/mini_tt/login-dark.png",
+          alt: "Tela de login do Mini TT em tema escuro",
+        },
+        {
+          src: "/projects/mini_tt/timeline-light.png",
+          alt: "Timeline do Mini TT em tema claro",
+        },
+        {
+          src: "/projects/mini_tt/timeline-dark.png",
+          alt: "Timeline do Mini TT em tema escuro",
+        },
+      ],
     },
     {
       title: "Site Estático para Laboratório",
@@ -104,10 +133,12 @@ export const portfolio = {
         pt: "Momentos importantes do laboratório e divulgação de dados.",
         en: "Virtual environment to record important moments of the laboratory and share data.",
       },
-      image: {
-        src: "/projects/lab_website.png",
-        alt: "Capa do projeto Site Estático para Laboratório",
-      },
+      images: [
+        {
+          src: "/projects/lab_website.png",
+          alt: "Capa do projeto Site Estático para Laboratório",
+        },
+      ],
     },
   ] as Project[],
   stacks: [
