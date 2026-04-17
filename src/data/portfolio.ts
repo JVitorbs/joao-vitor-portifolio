@@ -5,6 +5,7 @@ export type LocalizedText = Record<Locale, string>;
 export type Project = {
   title: string;
   description: LocalizedText;
+  repositoryUrl: string;
   images: {
     src: string;
     alt: string;
@@ -82,6 +83,7 @@ export const portfolio = {
         pt: "Plataforma web para divulgação de eventos, história e atividades da IBP.",
         en: "Web platform for sharing IBP events, history, and community activities.",
       },
+      repositoryUrl: "https://github.com/JVitorbs/ibp-next",
       images: [
         {
           src: "/projects/somosibp.png",
@@ -95,6 +97,7 @@ export const portfolio = {
         pt: "Loja com checkout otimizado, arquitetura escalável e interface minimalista.",
         en: "Store with optimized checkout, scalable architecture, and minimalist interface.",
       },
+      repositoryUrl: "https://github.com/JVitorbs/mini-marketplace-services",
       images: [
         {
           src: "/projects/ecommerce.png",
@@ -108,6 +111,7 @@ export const portfolio = {
         pt: "Rede social microblog com autenticação, posts, curtidas, busca e timeline paginada.",
         en: "Microblog social network with authentication, posts, likes, search, and paginated timeline.",
       },
+      repositoryUrl: "https://github.com/JVitorbs/teste-dev-frontend",
       images: [
         {
           src: "/projects/mini_tt/login-light.png",
@@ -133,6 +137,7 @@ export const portfolio = {
         pt: "Momentos importantes do laboratório e divulgação de dados.",
         en: "Virtual environment to record important moments of the laboratory and share data.",
       },
+      repositoryUrl: "https://github.com/Lavat-Moderador/entrarlavat",
       images: [
         {
           src: "/projects/lab_website.png",
